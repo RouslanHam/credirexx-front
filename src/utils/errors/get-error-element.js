@@ -1,5 +1,5 @@
 export function getErrorElement(control) {
-  if (control.type === 'checkbox' || control.type === 'hidden') {
+  if (control.type === 'hidden') {
     return null;
   }
 

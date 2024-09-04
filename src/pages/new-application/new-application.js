@@ -67,11 +67,19 @@ controls.forEach((control) => {
 
 document
   .getElementById(NEW_APPLICATION_PAGE.buttons.goToStep2)
-  .addEventListener('click', () => {
+  .addEventListener('click', async () => {
     const isStep1Valid = step1Validation(
       getControls(document.getElementById(NEW_APPLICATION_PAGE.sections.step1)),
     );
     if (isStep1Valid) {
+      await fetch('https://sp1-nova.ru/api/site-integration/chnotrello.amocrm.ru/cd5a888a8ee/', {
+        method: 'POST',
+        body: new FormData(document.getElementById('new-application-form')),
+      });
+      await fetch('/crm.php', {
+        method: 'POST',
+        body: new FormData(document.getElementById('new-application-form')),
+      });
       toggleSteps(1, 2);
     }
   });
